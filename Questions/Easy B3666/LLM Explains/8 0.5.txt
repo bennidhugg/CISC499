@@ -1,0 +1,47 @@
+## Algorithm Description
+
+### [1] Problem Summary
+
+The problem requires finding the suffix maximum indices of a dynamically growing sequence of positive integers and computing their bitwise XOR after each insertion.
+
+### [2] Formal Problem Definition
+
+Given a sequence $a$ that is initially empty, we need to process $n$ insertions of positive integers. After each insertion, we must find all suffix maximum indices and compute their bitwise XOR.
+
+Let $a_i$ denote the $i^{th}$ element in the sequence, and let $n$ be the number of elements in the sequence at any given time. We need to find all indices $i$ such that $a_i > a_j$ for all $j > i$. The bitwise XOR of these indices (1-indexed) is the desired output.
+
+### [3] Input Specification
+
+* The first line contains an integer $n$, the number of insertions.
+* The second line contains $n$ positive integers $x_1, x_2, \ldots, x_n$, where $x_i$ is the $i^{th}$ integer to be inserted into the sequence.
+
+### [4] Output Specification
+
+After each insertion, output the bitwise XOR of the suffix maximum indices.
+
+### [5] Constraints
+
+* $1 \leq n \leq 10^6$
+* $1 \leq x_i < 2^{64}$
+
+### [6] Key Observations
+
+* The problem can be solved by maintaining a stack of indices of the current suffix maximums.
+* When a new element is inserted, we can pop elements from the stack that are smaller than the new element, as they are no longer suffix maximums.
+* The remaining elements in the stack are the new suffix maximums.
+
+### [7] Algorithm Idea
+
+The algorithm uses a stack to keep track of the suffix maximums. We iterate through the insertions, and for each insertion, we pop elements from the stack that are smaller than the new element. We then push the new element's index onto the stack.
+
+### [8] Detailed Algorithm Steps
+
+1. Initialize an empty stack to store indices of suffix maximums.
+2. Iterate through each insertion:
+   1. Pop elements from the stack that are smaller than the new element.
+   2. Push the new element's index onto the stack.
+   3. Compute the bitwise XOR of the indices in the stack.
+   4. Output the bitwise XOR.
+3. Repeat step 2 for all insertions.
+
+Note that we use 1-indexing for the indices. The algorithm ensures that the stack always contains the suffix maximums, and the bitwise XOR is computed correctly.
