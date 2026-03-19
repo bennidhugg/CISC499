@@ -9,11 +9,17 @@ General requirements:
 1. The output must strictly follow the section structure defined below.
 2. Do not omit any section.
 3. Each section must contain sufficient detail so that the algorithm can be implemented without guessing missing information.
-4. Avoid vague language. Clearly define variables, conditions, and operations.
+4. Avoid vague language. Clearly define variables, states, conditions, operations, conventions, and update rules.
 5. Use consistent variable names throughout the document.
 6. All algorithm operations must be deterministic and sequential.
 7. Do not include program code or implementation snippets.
 8. Explanations should focus on the logic and structure of the algorithm.
+9. The document must preserve the exact semantics of the original problem statement. Do not weaken, strengthen, or reinterpret conditions.
+10. Clearly define all conventions that affect correctness, including indexing rules, interval boundaries, ordering conventions, and tie-handling rules when applicable.
+11. If the input constraints imply a required efficiency level, the described algorithm must explicitly satisfy those constraints.
+12. Every maintained variable, aggregate, or data structure must be defined precisely, including what it stores, what invariant it satisfies, and when it is updated.
+13. If a value is maintained incrementally, explicitly describe how each operation changes it.
+14. Boundary cases, degenerate cases, and special-case rules must be stated explicitly whenever they affect correctness.
 
 CRITICAL STRUCTURE RULES:
 
@@ -23,6 +29,7 @@ CRITICAL STRUCTURE RULES:
 4. The section titles must match the exact text below.
 5. Do NOT modify the wording of the section titles.
 6. Do NOT add additional headings or sections.
+7. Section titles must appear exactly as plain text lines, not as Markdown heading syntax.
 
 Raw formatting requirements:
 
@@ -41,11 +48,13 @@ Algorithm Description
 
 [1] Problem Summary
 Provide a short explanation of the task and what needs to be computed or determined.
+Mention any convention or subtle requirement that is essential for correctness.
 
 [2] Formal Problem Definition
 Provide a formal or mathematical description of the problem.
 Define the input variables, output variables, and the relationship or objective that must be satisfied.
 Mathematical expressions must be written using LaTeX syntax.
+Preserve the exact logical conditions from the original statement, including boundary conditions and any special-case rules.
 
 [3] Input Specification
 Describe the exact input format.
@@ -57,19 +66,29 @@ Describe the exact output format and what the output represents.
 [5] Constraints
 List all limits on input size and values.
 Include bounds for variables such as $n$, array values, or graph size.
+If the constraints imply a target asymptotic complexity, state it explicitly.
 
 [6] Key Observations
 List the important properties or insights about the problem.
 Explain why the problem can be solved using a particular strategy or transformation.
+Include any invariant, monotonicity, case distinction, or structural property used by the solution.
+If duplicates, ties, degenerate cases, or boundary cases affect correctness, state that explicitly.
 
 [7] Algorithm Idea
 Explain the overall method used to solve the problem.
 Describe the main algorithmic technique, required data structures, and how the observations lead to this solution.
+For each data structure, specify exactly what each element or field represents.
+State the invariant maintained throughout the algorithm.
+State the total time complexity and space complexity, and ensure they are consistent with the constraints.
 
 [8] Detailed Algorithm Steps
 Provide a numbered sequence of precise steps that describe the algorithm.
 Each step must clearly describe operations, loops, and conditions.
 The steps should be sufficiently explicit so that an implementation can be written directly from them.
+Every condition must be written unambiguously.
+Every update must specify exactly which state changes and how.
+If an aggregate or answer is maintained during execution, describe its update rule explicitly.
+Do not leave hidden steps that require the implementer to infer missing logic.
 
 Output only the structured algorithm description using the format above.
 Do not include any sections outside this structure.
