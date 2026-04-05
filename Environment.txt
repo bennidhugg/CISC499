@@ -1,2 +1,1 @@
-pip install sentence_transformers
-pip install ollama
+pip install sentence_transformers ollama

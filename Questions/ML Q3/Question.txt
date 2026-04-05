@@ -1,0 +1,87 @@
+# ML Q3 Best Split
+
+## Problem Description
+
+Given a binary classification dataset, you need to find the best single split used in a CART decision tree.
+
+For each feature $j$, you may choose one threshold $t$. The split rule is:
+
+- go to the left child if $x_j \le t$,
+- go to the right child if $x_j > t$.
+
+For a split, the impurity is defined by the weighted Gini index:
+
+$$
+G = \frac{n_L}{n}G_L + \frac{n_R}{n}G_R
+$$
+
+where
+
+$$
+G_L = 1 - p_{L,0}^2 - p_{L,1}^2
+$$
+
+$$
+G_R = 1 - p_{R,0}^2 - p_{R,1}^2
+$$
+
+Here:
+
+- $n_L$ is the number of samples in the left child,
+- $n_R$ is the number of samples in the right child,
+- $n$ is the total number of samples,
+- $p_{L,0}$ and $p_{L,1}$ are the proportions of labels $0$ and $1$ in the left child,
+- $p_{R,0}$ and $p_{R,1}$ are the proportions of labels $0$ and $1$ in the right child.
+
+A valid threshold for feature $j$ can only be chosen as the midpoint of two adjacent distinct values after sorting samples by feature $j$.
+
+You must find the split with minimum weighted Gini index.
+
+If multiple splits have the same minimum impurity, choose the one with:
+
+1. smaller feature index;
+2. then smaller threshold;
+3. then smaller number of samples in the left child.
+
+## Input
+
+The first line contains an integer $T$, the number of test cases.
+
+For each test case:
+
+- The first line contains two integers $n,m$.
+- Then follow $n$ lines. Each line contains $m$ integers and one integer label $y \in \{0,1\}$.
+
+## Output
+
+For each test case, output one line with three values:
+
+- the chosen feature index (1-based),
+- the chosen threshold,
+- the minimum weighted Gini index.
+
+Print the threshold and impurity with $6$ digits after the decimal point.
+
+## Sample Input
+
+1
+4 2
+1 5 0
+2 4 0
+8 3 1
+9 2 1
+
+## Sample Output
+
+1 5.000000 0.000000
+
+## Constraints
+
+- $1 \le T \le 10$
+- $2 \le n \le 2000$
+- $1 \le m \le 20$
+- feature values are integers in $[-10^6,10^6]$
+
+## Notes
+
+Only valid midpoints between adjacent distinct values may be used as thresholds.
